@@ -111,7 +111,7 @@ powercfg -setactive $HighPerf
 Write-Message "Completed"
 
 Write-Message "Set Time Zone"
-Set-TimeZone -Id "Eastern Standard Time" | Tee-Object -FilePath $sLogFile -Append
+Set-TimeZone -Id "Eastern Standard Time"
 Write-Message "Completed"
 
 Write-Message "Installing Applications"

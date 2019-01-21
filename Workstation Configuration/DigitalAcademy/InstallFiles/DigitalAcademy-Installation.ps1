@@ -32,6 +32,11 @@
   Creation Date:  January 13, 2018
   Purpose/Change: Added new requirements and refined code
 
+  Version:        2.1
+  Author:         Cory Dignard
+  Creation Date:  January 15, 2018
+  Purpose/Change: Changed "Disable Slack Updater" to remove reg key instead of change
+
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
   
@@ -106,7 +111,7 @@ powercfg -setactive $HighPerf
 Write-Message "Completed"
 
 Write-Message "Set Time Zone"
-Set-TimeZone -Id "Eastern Standard Time"
+Set-TimeZone -Id "Eastern Standard Time" | Tee-Object -FilePath $sLogFile -Append
 Write-Message "Completed"
 
 Write-Message "Installing Applications"
@@ -140,7 +145,8 @@ rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Write-Message "Completed"
 
 Write-Message "Disable Slack Updater"
-Set-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run -Name com.squirrel.slack.slack -Value ([byte[]](0x03,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00))
+Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run -Name com.squirrel.slack.slack
+Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name com.squirrel.slack.slack
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Write-Message "Completed"
 

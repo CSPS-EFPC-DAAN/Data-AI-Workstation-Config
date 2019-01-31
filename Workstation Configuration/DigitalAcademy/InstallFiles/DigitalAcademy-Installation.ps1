@@ -37,6 +37,11 @@
   Creation Date:  January 15, 2018
   Purpose/Change: Changed "Disable Slack Updater" to remove reg key instead of change
 
+  Version:        2.2
+  Author:         Cory Dignard
+  Creation Date:  January 30, 2018
+  Purpose/Change: Changed desktop wallpaper image used
+
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
   
@@ -128,7 +133,7 @@ InstallSoftware "Desktop Shortcuts" "xcopy" "$InstallFiles\*.lnk C:\Users\Public
 Write-Message "Completed"
 
 Write-Message "Set Desktop Wallpaper"
-Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value "$InstallFiles\shutterstock_100185233.jpg"
+Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value "$InstallFiles\Background - Bottom left SM-02.png"
 Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6"
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Write-Message "Completed"

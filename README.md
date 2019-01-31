@@ -1,4 +1,4 @@
-# Workstation Configuration for Data and AI/ML Learning
+﻿# Workstation Configuration for Data and AI/ML Learning
 
 These configuration files are in support of the Data and AI/ML training courses the **Canada School of Public Service (CSPS) Digital Academy (DA) / École de la fonction publique du Canada (EFPC) Académie du numérique (AN)**, are hosting starting January 31, 2019.
 
@@ -23,7 +23,7 @@ This README.md was created using [dillinger.io]
 * **Anaconda-Channels.txt** : List of Anaconda channels that are addeed as part of the configuration
 * **NewPackages.txt** : List of Python/R packages that are installed into a new environment
 * **PowerPlan.pow** : Windows Power Plan applied as part of the configuration
-* **shutterstock_100185233.jpg** and AI_BigDataScience.jpg (not used) : Desktop wallpapers
+* **Background - Bottom left SM-02.png**, shutterstock_100185233.jpg (not used) and AI_BigDataScience.jpg (not used) : Desktop wallpapers
 * ***.lnk** : Desktop shortcuts added
 
 # How to use the scripts

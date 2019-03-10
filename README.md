@@ -30,7 +30,7 @@ This README.md was created using [dillinger.io]
 The Powershell scripts were designed on Surface Pro's running Windows 10 build 1803.
 
 * Download the following installations files
-  * Anaconda 5.3.1 Python 3.7 version - https://www.anaconda.com/download/
+  * Anaconda 2018.12 Python 3.7 version - https://www.anaconda.com/download/
   * R 3.5.1 - https://cran.rstudio.com/bin/windows/base/
   * RStudio Desktop 1.1.463 - https://www.rstudio.com/products/rstudio/download/#download\
   * Power BI Desktop - (Microsoft Store) https://powerbi.microsoft.com/en-us/get-started/
@@ -56,6 +56,12 @@ select [A] Yes to All
 C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "c:\DigitalAcademy\InstallFiles"
 ```
 * Restart workstation once complete
+* Start Anaconda Prompt and run commands
+```sh
+conda update conda -y
+conda init
+```
+* 
 * Open Powershell prompt as administrator
 * Configure Anaconda
 ```sh

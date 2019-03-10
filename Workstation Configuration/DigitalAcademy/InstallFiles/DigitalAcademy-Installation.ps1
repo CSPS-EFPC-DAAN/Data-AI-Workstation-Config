@@ -29,18 +29,23 @@
 
   Version:        2.0
   Author:         Cory Dignard
-  Creation Date:  January 13, 2018
+  Creation Date:  January 13, 2019
   Purpose/Change: Added new requirements and refined code
 
   Version:        2.1
   Author:         Cory Dignard
-  Creation Date:  January 15, 2018
+  Creation Date:  January 15, 2019
   Purpose/Change: Changed "Disable Slack Updater" to remove reg key instead of change
 
   Version:        2.2
   Author:         Cory Dignard
-  Creation Date:  January 30, 2018
+  Creation Date:  January 30, 2019
   Purpose/Change: Changed desktop wallpaper image used
+
+  Version:        3.0
+  Author:         Cory Dignard
+  Creation Date:  March 10, 2019
+  Purpose/Change: Changes based on Anaconda version 2018.12
 
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
@@ -64,7 +69,7 @@ Import-Module PSLogging
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
 #Script Version
-$sScriptVersion = '2.0'
+$sScriptVersion = '3.0'
 
 #Log File Info
 $sLogPath = $InstallFiles
@@ -120,7 +125,7 @@ Set-TimeZone -Id "Eastern Standard Time"
 Write-Message "Completed"
 
 Write-Message "Installing Applications"
-InstallSoftware "Anaconda" "$InstallFiles\Anaconda3-5.3.1-Windows-x86_64.exe" "/InstallationType=AllUsers /RegisterPython=1 /S"
+InstallSoftware "Anaconda" "$InstallFiles\Anaconda3-2018.12-Windows-x86_64.exe" "/InstallationType=JustMe /RegisterPython=1 /S"
 InstallSoftware "R" "$InstallFiles\R-3.5.1-win.exe" "/VERYSILENT"
 InstallSoftware "RStudio" "$InstallFiles\RStudio-1.1.463" "/S"
 InstallSoftware "sqlite" "xcopy" "$InstallFiles\sqlite C:\ProgramData\sqlite /I /S /Y /Q"
@@ -140,18 +145,12 @@ Write-Message "Completed"
 
 Write-Message "Adding paths"
 $oldPath = [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;C:\ProgramData\Anaconda3;C:\ProgramData\Anaconda3\Scripts"
+$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;C:\Users\Dragonfly\Anaconda3;C:\Users\Dragonfly\Anaconda3\Scripts"
 [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::Machine)
 Write-Message "Completed"
 
 Write-Message "Disable Power BI Registration Screen"
 Set-ItemProperty 'HKCU:\Software\Microsoft\Microsoft Power BI Desktop' -Name ShowLeadGenDialog -Value "0"
-rundll32.exe user32.dll, UpdatePerUserSystemParameters
-Write-Message "Completed"
-
-Write-Message "Disable Slack Updater"
-Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run -Name com.squirrel.slack.slack
-Remove-ItemProperty HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name com.squirrel.slack.slack
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Write-Message "Completed"
 

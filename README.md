@@ -12,17 +12,10 @@ This README.md was created using [dillinger.io]
 # Files
 * **DigitalAcademy-Installation.ps1**
   * Sets: Power Plan, Time Zone, Desktop Wallpaper 
-  * Installs: Anaconda, R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop, Github Desktop, Desktop shortcuts 
+  * Installs: R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop, Github Desktop, Desktop shortcuts 
    * Adds Path Environment variables 
    * Disables Power BI Registration Sceeen
-* **DigitalAcademy-ConfigAnaconda.ps1**
-   * Updates: pip (python), installs PyHamcrest (python), Anaconda, Anaconda Navigator, pip (Anaconda)
-    * Adds new channels to Anaconda
-    * Creates a new environment named Ferret with python 3.7 and R
-    * Installs: RStudio, new python and R packages into Ferret environment
 * **Commands.txt** : List of commands I used to do the installs
-* **Anaconda-Channels.txt** : List of Anaconda channels that are addeed as part of the configuration
-* **NewPackages.txt** : List of Python/R packages that are installed into a new environment
 * **PowerPlan.pow** : Windows Power Plan applied as part of the configuration
 * **background.png** : Desktop wallpaper
 * ***.lnk** : Desktop shortcuts added
@@ -31,7 +24,6 @@ This README.md was created using [dillinger.io]
 The Powershell scripts were designed on laptops running Windows 10 build 1903.
 
 * Download the following installations files
-  * Anaconda 2019.10 Python 3.7 version - https://www.anaconda.com/download/
   * R 3.6.1 - https://cran.rstudio.com/bin/windows/base/
   * RStudio Desktop 1.2.5001 - https://www.rstudio.com/products/rstudio/download/#download\
   * Power BI Desktop 2.74.5619.621 - https://www.microsoft.com/en-us/download/details.aspx?id=58494 or (Microsoft Store) https://powerbi.microsoft.com/en-us/get-started/
@@ -59,17 +51,6 @@ select [A] Yes to All
 * Launch installation script
 ```sh
 C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "c:\DigitalAcademy\InstallFiles"
-```
-* Restart workstation once complete
-* Start Anaconda Prompt and run commands
-```sh
-conda update conda -y
-conda init
-```
-* Open Powershell prompt as administrator
-* Configure Anaconda
-```sh
-C:\DigitalAcademy\InstallFiles\DigitalAcademy-ConfigAnaconda.ps1 -InstallFiles"c:\DigitalAcademy\InstallFiles"
 ```
 * Restart workstation once complete
 * DONE!

@@ -7,8 +7,8 @@
 
 .DESCRIPTION
   Sets: Power Plan, Time Zone, Desktop Wallpaper 
-  Installs: Anaconda, R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop, Github Desktop, Desktop shortcuts 
-  Adds Path Environment variables 
+  Installs: R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop, Github Desktop, Desktop shortcuts 
+  Adds Path Environment variables
   Disables Power BI Registration Sceeen
 
 .PARAMETER InstallFiles
@@ -56,6 +56,11 @@
   Creation Date:  September 17, 2019
   Purpose/Change: Updated $newPath to fix conda update issue
 
+  Version:        4.0
+  Author:         Cory Dignard
+  Creation Date:  September 17, 2019
+  Purpose/Change: Removed everything related to Anaconda
+
 
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
@@ -79,7 +84,7 @@ Import-Module PSLogging
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
 #Script Version
-$sScriptVersion = '3.2'
+$sScriptVersion = '4.0'
 
 #Log File Info
 $sLogPath = $InstallFiles
@@ -135,7 +140,6 @@ Set-TimeZone -Id "Eastern Standard Time"
 Write-Message "Completed"
 
 Write-Message "Installing Applications"
-InstallSoftware "Anaconda" "$InstallFiles\Anaconda3-2019.10-Windows-x86_64.exe" "/InstallationType=JustMe /RegisterPython=1 /S"
 InstallSoftware "R" "$InstallFiles\R-3.6.1-win.exe" "/VERYSILENT"
 InstallSoftware "RStudio" "$InstallFiles\RStudio-1.2.5001.exe" "/S"
 InstallSoftware "sqlite" "xcopy" "$InstallFiles\sqlite-tools-win32-x86-3300100 C:\ProgramData\sqlite /I /S /Y /Q"
@@ -155,7 +159,7 @@ Write-Message "Completed"
 
 Write-Message "Adding paths"
 $oldPath = [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;" + $HOME + "\Anaconda3;" + $HOME + "\Anaconda3\Scripts;" + $HOME + "\Anaconda3\Library\bin"
+$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio"
 [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::Machine)
 Write-Message "Completed"
 

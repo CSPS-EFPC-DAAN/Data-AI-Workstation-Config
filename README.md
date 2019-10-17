@@ -53,6 +53,7 @@ select [A] Yes to All
 * Install PSLogging
 ```sh
 Install-Module PSLogging
+select [Y] Yes
 select [A] Yes to All
 ```
 * Launch installation script
@@ -65,7 +66,6 @@ C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "c:
 conda update conda -y
 conda init
 ```
-* 
 * Open Powershell prompt as administrator
 * Configure Anaconda
 ```sh

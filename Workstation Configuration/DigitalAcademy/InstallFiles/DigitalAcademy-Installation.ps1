@@ -51,6 +51,11 @@
   Creation Date:  September 17, 2019
   Purpose/Change: Updates for Cohort 2
 
+  Version:        3.2
+  Author:         Cory Dignard
+  Creation Date:  September 17, 2019
+  Purpose/Change: Updated $newPath to fix conda update issue
+
 
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
@@ -74,7 +79,7 @@ Import-Module PSLogging
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
 #Script Version
-$sScriptVersion = '3.1'
+$sScriptVersion = '3.2'
 
 #Log File Info
 $sLogPath = $InstallFiles
@@ -150,7 +155,7 @@ Write-Message "Completed"
 
 Write-Message "Adding paths"
 $oldPath = [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;" + $HOME + "\Anaconda3;" + $HOME + "\Anaconda3\Scripts"
+$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;" + $HOME + "\Anaconda3;" + $HOME + "\Anaconda3\Scripts;" + $HOME + "\Anaconda3\Library\bin"
 [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::Machine)
 Write-Message "Completed"
 

@@ -7,10 +7,9 @@
 
 .DESCRIPTION
   Sets: Power Plan, Time Zone, Desktop Wallpaper 
-  Installs: Anaconda, R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop,
-  Github Desktop, Desktop shortcuts 
+  Installs: Anaconda, R, RStudio, sqlite, SQLite Studio, Power BI Desktop, Chrome, Slack Desktop, Github Desktop, Desktop shortcuts 
   Adds Path Environment variables 
-  Disables Power BI Registration Sceeen, Slack Updater
+  Disables Power BI Registration Sceeen
 
 .PARAMETER InstallFiles
   Folder where installation files are
@@ -47,6 +46,12 @@
   Creation Date:  March 10, 2019
   Purpose/Change: Changes based on Anaconda version 2018.12
 
+  Version:        3.1
+  Author:         Cory Dignard
+  Creation Date:  September 17, 2019
+  Purpose/Change: Updates for Cohort 2
+
+
 .EXAMPLE
   C:\DigitalAcademy\InstallFiles\DigitalAcademy-Installation.ps1 -InstallFiles "C:\DigitalAcademy\InstallFiles"
   
@@ -69,7 +74,7 @@ Import-Module PSLogging
 #----------------------------------------------------------[Declarations]----------------------------------------------------------
 
 #Script Version
-$sScriptVersion = '3.0'
+$sScriptVersion = '3.1'
 
 #Log File Info
 $sLogPath = $InstallFiles
@@ -125,12 +130,12 @@ Set-TimeZone -Id "Eastern Standard Time"
 Write-Message "Completed"
 
 Write-Message "Installing Applications"
-InstallSoftware "Anaconda" "$InstallFiles\Anaconda3-2018.12-Windows-x86_64.exe" "/InstallationType=JustMe /RegisterPython=1 /S"
-InstallSoftware "R" "$InstallFiles\R-3.5.1-win.exe" "/VERYSILENT"
-InstallSoftware "RStudio" "$InstallFiles\RStudio-1.1.463" "/S"
-InstallSoftware "sqlite" "xcopy" "$InstallFiles\sqlite C:\ProgramData\sqlite /I /S /Y /Q"
+InstallSoftware "Anaconda" "$InstallFiles\Anaconda3-2019.10-Windows-x86_64.exe" "/InstallationType=JustMe /RegisterPython=1 /S"
+InstallSoftware "R" "$InstallFiles\R-3.6.1-win.exe" "/VERYSILENT"
+InstallSoftware "RStudio" "$InstallFiles\RStudio-1.2.5001.exe" "/S"
+InstallSoftware "sqlite" "xcopy" "$InstallFiles\sqlite-tools-win32-x86-3300100 C:\ProgramData\sqlite /I /S /Y /Q"
 InstallSoftware "SQLite Studio" "xcopy" "$InstallFiles\SQLiteStudio C:\ProgramData\SQLiteStudio /I /S /Y /Q"
-InstallSoftware "PowerBI Desktop" "msiexec.exe" "/i $InstallFiles\PBIDesktop_x64.msi ACCEPT_EULA=1 /q"
+InstallSoftware "PowerBI Desktop" "msiexec.exe" "/i $InstallFiles\PBIDesktopSetup_x64.exe ACCEPT_EULA=1 /q"
 InstallSoftware "Chrome" "msiexec" "/i $InstallFiles\GoogleChromeStandaloneEnterprise64.msi /q"
 InstallSoftware "Slack" "$InstallFiles\SlackSetup.exe" "/silent"
 InstallSoftware "Github" "$InstallFiles\GitHubDesktopSetup" "/silent"
@@ -138,14 +143,14 @@ InstallSoftware "Desktop Shortcuts" "xcopy" "$InstallFiles\*.lnk C:\Users\Public
 Write-Message "Completed"
 
 Write-Message "Set Desktop Wallpaper"
-Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value "$InstallFiles\Background - Bottom left SM-02.png"
+Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name wallpaper -value "$InstallFiles\wallpaper1920x1080.png"
 Set-ItemProperty -path 'HKCU:\Control Panel\Desktop\' -name WallpaperStyle -value "6"
 rundll32.exe user32.dll, UpdatePerUserSystemParameters
 Write-Message "Completed"
 
 Write-Message "Adding paths"
 $oldPath = [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;C:\Users\Dragonfly\Anaconda3;C:\Users\Dragonfly\Anaconda3\Scripts"
+$newPath = $oldPath + ";C:\ProgramData\sqlite;C:\ProgramData\SQLiteStudio;" + $HOME + "\Anaconda3;" + $HOME + "\Anaconda3\Scripts"
 [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::Machine)
 Write-Message "Completed"
 
